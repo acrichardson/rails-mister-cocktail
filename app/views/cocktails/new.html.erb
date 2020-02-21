@@ -1,0 +1,9 @@
+<h1>MAKE YOUR NEW COCKTAIL!</h1>
+
+<%= simple_form_for [@cocktail] do |f| %>
+  <%= f.input :name %>
+  <%= f.submit "add cocktail", class: "btn btn-primary" %>
+<% end %>
+
+<!-- as: :radio_buttons -->
+<!-- as: :check_boxes -->
