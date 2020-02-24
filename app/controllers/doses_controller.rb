@@ -21,6 +21,8 @@ class DosesController < ApplicationController
     redirect_to cocktail_path(@cocktail)
   end
 
+
+
   private
 
   def set_cocktail

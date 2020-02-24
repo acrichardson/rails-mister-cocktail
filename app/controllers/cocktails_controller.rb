@@ -5,6 +5,7 @@ class CocktailsController < ApplicationController
 
   def new
     @cocktail = Cocktail.new
+    2.times { @cocktail.doses.build }
   end
 
   def show
@@ -22,10 +23,25 @@ class CocktailsController < ApplicationController
     end
   end
 
+    def update
+      @cocktail = Cocktail.find(params[:id])
+    if @cocktail.update(cocktail_params)
+      redirect_to cocktail_path
+    else
+      render :edit
+    end
+  end
+
+  def edit
+    @cocktail = Cocktail.find(params[:id])
+    @dose = Dose.new
+
+  end
+
   private
 
   def cocktail_params
-    params.require(:cocktail).permit(:name, :doses, :ingredients)
+    params.require(:cocktail).permit(:name, :doses, :ingredients, photos: [])
   end
 
 end

@@ -1,9 +1,16 @@
 <h1>MAKE YOUR NEW COCKTAIL!</h1>
 
+<div class="d-flex p-2 justify-content-center ">
+
 <%= simple_form_for [@cocktail] do |f| %>
   <%= f.input :name %>
+  <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   <%= f.submit "add cocktail", class: "btn btn-primary" %>
 <% end %>
 
+</div>
+
 <!-- as: :radio_buttons -->
 <!-- as: :check_boxes -->
+
+<!-- col md-6 -->

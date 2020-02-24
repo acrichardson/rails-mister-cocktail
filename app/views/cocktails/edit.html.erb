@@ -1,0 +1,30 @@
+<%= render 'shared/navbar-edit' %>
+
+<h2 class="text-center od" ><%= @cocktail.name %></h2>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+      <div class="od">Ingredients:</div>
+      <% @cocktail.doses.each do |dose| %>
+        <div class="od"><%= dose.ingredient.name %>
+        <%= dose.description %>
+        <%= link_to "delete", dose_path(dose), method: :delete %>
+        </div>
+    <% end %>
+    </div>
+    <div class="col-sm-4 col-sm-offset-4">
+    <%= simple_form_for [@cocktail, @dose] do |f| %>
+    <%= f.input :description, collection: %i[5ml 10ml 15ml 20ml 25ml 30ml 40ml 50ml 60ml 70ml 100ml 200ml top_up 8_leaves] %>
+    <%= f.association :ingredient %>
+    <%= f.submit class: "btn btn-primary" %>
+<% end %>
+  <div class= "">
+        <%= simple_form_for [@cocktail] do |f| %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        <%= f.submit "add picture", class: "btn btn-primary" %>
+      <% end %>
+  </div>
+  </div>
+  </div>
+</div>
