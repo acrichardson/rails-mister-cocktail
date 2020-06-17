@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   # resources :ingredients, only: [:index, :show]
   resources :cocktails do
     resources :doses, only: [:create]
+    resources :descriptions, only: [:create, :new, :destroy]
+    member do
+    delete :delete_photo
+    end
   end
   resources :doses, only: [:new, :destroy]
-end
+  end

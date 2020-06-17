@@ -1,8 +1,5 @@
 <%= render 'shared/navbar-show' %>
 
-<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= cl_image_path @cocktail.photos.first.key %>)">
-  <%= @cocktail.name %>
-</div>
 
 <h2 class="text-center od" ><%= @cocktail.name %></h2>
 
@@ -23,23 +20,37 @@
         <%= link_to "delete", dose_path(dose), method: :delete %>
   </div>
     <% end %>
-</div> -->
+  </div> -->
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm-6 m-3">
+  <div class="container flex">
+      <div class="row">
+        <% if @cocktail.photos != nil %>
         <% @cocktail.photos.each do |photo| %>
-          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-        <% end %>
-    </div>
-    <div class="col-sm-4 m-3">
-      <div class="od">Ingredients:</div>
-      <% @cocktail.doses.each do |dose| %>
-        <div><%= dose.ingredient.name %>
-             <%= dose.description %>
-             <%= link_to "delete", dose_path(dose), method: :delete %>
+        <div class="col-sm-12 col-lg-6 m-3">
+          <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill, class:"photo" %>
         </div>
-            <% end %>
+        <% end %>
+        <% end %>
+      </div>
+
+    <div class="row">
+      <div class="col-sm-12 col-lg-8 m-3">
+        <div class="od">Ingredients:</div>
+        <% @cocktail.doses.each do |dose| %>
+        <div><%= dose.ingredient.name %>
+         <%= dose.description %>
+       </div>
+       <% end %>
+     <div class="description">
+        <div class="od">How to::</div>
+      <% if @cocktail.description != nil %>
+      <%= @cocktail.description.how_to %>
+      <% end %>
+    </div>
+    <div class="edit">
+      <%= link_to "Edit cocktail", edit_cocktail_path(@cocktail), class: "dropdown-item" %>
+     </div>
     </div>
   </div>
+
 </div>

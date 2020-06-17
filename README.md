@@ -22,3 +22,5 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+* Add all ingredients to shaker. Shake with all your might. Strain into a salt-rimmed coupe!

@@ -2,29 +2,53 @@
 
 <h2 class="text-center od" ><%= @cocktail.name %></h2>
 
-<div class="container">
+<div class="container m-5">
   <div class="row">
-    <div class="col-sm-4 col-sm-offset-4">
+    <div class="col-sm-12 col-lg-6 col-sm-offset-4">
+      <div class="ingredients">
+
       <div class="od">Ingredients:</div>
       <% @cocktail.doses.each do |dose| %>
-        <div class="od"><%= dose.ingredient.name %>
+      <div class="od"><%= dose.ingredient.name %>
         <%= dose.description %>
         <%= link_to "delete", dose_path(dose), method: :delete %>
-        </div>
-    <% end %>
-    </div>
-    <div class="col-sm-4 col-sm-offset-4">
-    <%= simple_form_for [@cocktail, @dose] do |f| %>
-    <%= f.input :description, collection: %i[5ml 10ml 15ml 20ml 25ml 30ml 40ml 50ml 60ml 70ml 100ml 200ml top_up 8_leaves] %>
-    <%= f.association :ingredient %>
-    <%= f.submit class: "btn btn-primary" %>
-<% end %>
-  <div class= "">
-        <%= simple_form_for [@cocktail] do |f| %>
-        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-        <%= f.submit "add picture", class: "btn btn-primary" %>
+      </div>
       <% end %>
+      </div>
+      <div class="">
+
+      <% if @cocktail.photos != nil %>
+        <% @cocktail.photos.each do |photo| %>
+          <div class="col-sm-12 p-0 mb-3">
+          <%= cl_image_tag photo.key, height: 150, width: 200, crop: :fill %>
+          <%= link_to 'Remove', delete_photo_cocktail_path(photo),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
+          </div>
+        <% end %>
+        <% end %>
   </div>
-  </div>
+    </div>
+
+    <div class="col-sm-4 col-sm-offset-4">
+      <div class="od mb-3">Add a dose:</div>
+      <%= simple_form_for [@cocktail, @dose] do |f| %>
+      <%= f.input :description, collection: %i[5ml 10ml 15ml 20ml 25ml 30ml 40ml 50ml 60ml 70ml 100ml 200ml top_up 8_leaves] %>
+      <%= f.association :ingredient %>
+      <%= f.submit class: "btn btn-primary" %>
+      <% end %>
+      <div class="od mb-3 mt-5">Add or change description:</div>
+
+        <%= simple_form_for [@cocktail, @description] do |f| %>
+        <%= f.input :how_to, as: :text %>
+        <%= f.submit "submit description", class: "btn btn-primary" %>
+        <% end %>
+                <%= simple_form_for [@cocktail] do |f| %>
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        <%= f.submit "add photo", class: "btn btn-primary" %>
+        <% end %>
+
+    </div>
   </div>
 </div>
+

@@ -10,6 +10,7 @@ class CocktailsController < ApplicationController
 
   def show
     @dose = Dose.new
+    @description = Description.new
     @cocktail = Cocktail.find(params[:id])
   end
 
@@ -23,10 +24,12 @@ class CocktailsController < ApplicationController
     end
   end
 
-    def update
-      @cocktail = Cocktail.find(params[:id])
+  def update
+    @cocktail = Cocktail.find(params[:id])
     if @cocktail.update(cocktail_params)
       redirect_to cocktail_path
+    elsif @cocktail.delete
+      redirect_to cocktails_path
     else
       render :edit
     end
@@ -35,13 +38,19 @@ class CocktailsController < ApplicationController
   def edit
     @cocktail = Cocktail.find(params[:id])
     @dose = Dose.new
+    @description = Description.new
+  end
 
+  def delete_photo
+    @photo = ActiveStorage::Blob.find(params[:id])
+    @photo.attachments.first.purge
+    redirect_back(fallback_location: cocktail_path)
   end
 
   private
 
   def cocktail_params
-    params.require(:cocktail).permit(:name, :doses, :ingredients, photos: [])
+    params.require(:cocktail).permit(:name, :description, :doses, :ingredients, photos: [])
   end
 
 end
