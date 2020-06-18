@@ -21,9 +21,11 @@
         <% @cocktail.photos.each do |photo| %>
           <div class="col-sm-12 p-0 mb-3">
           <%= cl_image_tag photo.key, height: 150, width: 200, crop: :fill %>
+          <% if @cocktail.photos.length > 1 %>
           <%= link_to 'Remove', delete_photo_cocktail_path(photo),
                 method: :delete,
                 data: { confirm: 'Are you sure?' } %>
+                <% end %>
           </div>
         <% end %>
         <% end %>

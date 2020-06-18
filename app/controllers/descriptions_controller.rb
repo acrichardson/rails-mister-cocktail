@@ -8,11 +8,10 @@ class DescriptionsController < ApplicationController
   def create
       if @cocktail.description != nil
       @cocktail.description.delete
-      # binding.pry
       end
       @description = Description.new(description_params)
       @description.cocktail = @cocktail
-      @cocktail.description = @description
+      # @cocktail.description_id = @description.id
     if @description.save
       redirect_to cocktail_path(@cocktail)
     else
@@ -25,6 +24,7 @@ class DescriptionsController < ApplicationController
     @description.delete
     @description = Description.new(description_params)
     @description.cocktail = @cocktail
+    @cocktail.description_id = @description.id
     if @description.save
       redirect_to cocktail_path(@cocktail)
     else

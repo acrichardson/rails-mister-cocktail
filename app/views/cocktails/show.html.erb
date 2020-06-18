@@ -32,7 +32,7 @@
         <% end %>
         <% end %>
       </div>
-
+<% binding.pry %>
     <div class="row half">
       <div class="col-sm-12 col-lg-8 m-3">
         <div class="od">Ingredients:</div>
@@ -42,7 +42,6 @@
        </div>
        <% end %>
      <div class="description">
-<% binding.pry %>
       <% unless @cocktail.description == nil %>
         <div class="od">How to::</div>
         <%= @cocktail.description.how_to %>
