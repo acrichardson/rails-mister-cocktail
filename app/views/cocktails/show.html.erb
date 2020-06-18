@@ -1,7 +1,7 @@
 <%= render 'shared/navbar-show' %>
 
 
-<h2 class="text-center od" ><%= @cocktail.name %></h2>
+<h2 class="text-center od mb-5 mt-5" ><%= @cocktail.name %></h2>
 
 <!-- <div class="container" >
 <% @cocktail.photos.each do |photo| %>
@@ -23,7 +23,7 @@
   </div> -->
 
   <div class="container flex">
-      <div class="row">
+      <div class="row half">
         <% if @cocktail.photos != nil %>
         <% @cocktail.photos.each do |photo| %>
         <div class="col-sm-12 col-lg-6 m-3">
@@ -33,7 +33,7 @@
         <% end %>
       </div>
 
-    <div class="row">
+    <div class="row half">
       <div class="col-sm-12 col-lg-8 m-3">
         <div class="od">Ingredients:</div>
         <% @cocktail.doses.each do |dose| %>
@@ -42,12 +42,13 @@
        </div>
        <% end %>
      <div class="description">
+<% binding.pry %>
+      <% unless @cocktail.description == nil %>
         <div class="od">How to::</div>
-      <% if @cocktail.description != nil %>
-      <%= @cocktail.description.how_to %>
+        <%= @cocktail.description.how_to %>
       <% end %>
     </div>
-    <div class="edit">
+    <div class="edit mt-5">
       <%= link_to "Edit cocktail", edit_cocktail_path(@cocktail), class: "dropdown-item" %>
      </div>
     </div>

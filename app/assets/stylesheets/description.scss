@@ -2,9 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .description {
-  margin: 4vh 0px;
+  margin-top: 3vh;
 }
 
 .ingredients {
   margin: 0vh 0vh 2vh 0vw;
+}
+
+.half {
+  width: 50vw;
 }
