@@ -14,7 +14,7 @@ lemon = Ingredient.find_or_create_by(name: "lemon")
 puts lemon
 Ingredient.create(name: "ice")
 Ingredient.create(name: "mint leaves")
-Ingredient.create(name: "vodke")
+Ingredient.create(name: "vodka")
 Ingredient.create(name: "kahlua")
 Ingredient.create(name: "milk")
 Ingredient.create(name: "dark rum")
